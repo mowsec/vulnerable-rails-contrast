@@ -10,19 +10,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-docker:
-    name: "Build the docker image"
-    runs-on: ubuntu-latest
+#   build-docker:
+#     name: "Build the docker image"
+#     runs-on: ubuntu-latest
     
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v2
+#     steps:
+#       - name: "Checkout"
+#         uses: actions/checkout@v2
         
         
-      
-  
-  
-  
   build:
     runs-on: ubuntu-latest
     environment: staging
