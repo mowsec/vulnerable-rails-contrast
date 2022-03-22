@@ -37,8 +37,8 @@ jobs:
     - name: "Configure database"
       run: bundle exec rake db:setup
     
-    - name: "Run tests"
-      run: bundle exec rake
+#     - name: "Run tests"
+#       run: bundle exec rake
     
     - name: "Post a nice comment"
       uses: github-actions-up-and-running/pr-comment@v1.0.1
