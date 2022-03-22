@@ -1,0 +1,38 @@
+name: Build RailsGoat Image
+
+concurrency: staging
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches: 
+      - main
+  workflow_dispatch:
+
+jobs:       
+        
+  build-railsgoat-contrast:
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: "Set up Ruby"
+      uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
+      with:
+        ruby-version: '2.6.5'
+        bundler-cache: true
+    
+    - name: "Install dependancies"
+      run: bundle install
+      
+    - name: "Configure database"
+      run: bundle exec rake db:setup
+    
+    - name: "Run tests"
+      env: 
+        RAILSGOAT_MAINTAINER: 1
+      run: | 
+        bundle exec rails db:setup
+        bundle exec rails assets:precompile
+        bundle exec rspec
