@@ -40,11 +40,11 @@ jobs:
 #     - name: "Run tests"
 #       run: bundle exec rake
     
-    - name: "Post a nice comment"
-      uses: github-actions-up-and-running/pr-comment@v1.0.1
-      with:
-        # Message to comment
-        message:  "Successfully built the railsgoat app"
+#     - name: "Post a nice comment"
+#       uses: github-actions-up-and-running/pr-comment@v1.0.1
+#       with:
+#         # Message to comment
+#         message:  "Successfully built the railsgoat app"
 
 
 # OLD 
