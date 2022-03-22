@@ -6,4 +6,5 @@ ADD Gemfile /myapp/Gemfile
 ADD Gemfile.lock /myapp/Gemfile.lock
 RUN gem install bundler -v 1.17.3
 RUN bundle install
+RUN bundle exec rake contrast:config:create
 ADD . /myapp
