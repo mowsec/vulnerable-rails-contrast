@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-2:639576125601:task-definition/deploy-railsgoat-contrast:1",
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-2:639576125601:task-definition/deploy-railsgoat-task-definition:1",
     "containerDefinitions": [
         {
-            "name": "railsgoat-contrast-prod",
-            "image": "639576125601.dkr.ecr.eu-west-2.amazonaws.com/railsgoat-contrast",
+            "name": "railsgoat-contrast-2",
+            "image": "639576125601.dkr.ecr.eu-west-2.amazonaws.com/railsgoat-contrast:55043713e9da5f2529583d8d9dffa6d09898ee8b",
             "cpu": 0,
             "links": [],
             "portMappings": [
@@ -22,14 +22,14 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/deploy-railsgoat-contrast",
+                    "awslogs-group": "/ecs/deploy-railsgoat-task-definition",
                     "awslogs-region": "eu-west-2",
                     "awslogs-stream-prefix": "ecs"
                 }
             }
         }
     ],
-    "family": "deploy-railsgoat-contrast",
+    "family": "deploy-railsgoat-task-definition",
     "executionRoleArn": "arn:aws:iam::639576125601:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "revision": 1,
@@ -68,7 +68,7 @@
     ],
     "cpu": "256",
     "memory": "512",
-    "registeredAt": "2022-03-22T13:57:56.048Z",
+    "registeredAt": "2022-03-22T17:27:12.319Z",
     "registeredBy": "arn:aws:iam::639576125601:user/Taylor-Admin",
     "tags": []
 }
