@@ -35,7 +35,7 @@ jobs:
       run: bundle install
       
     - name: "Configure database"
-      run: rails db:setup
+      run: rake db:setup
     
     - name: "Run tests"
       run: bundle exec rake
