@@ -35,6 +35,7 @@ on:
 
 env:
   AWS_REGION: eu-west-2
+  ECR_REGISTRY: 639576125601.dkr.ecr.eu-west-2.amazonaws.com
   ECR_REPOSITORY: 639576125601.dkr.ecr.eu-west-2.amazonaws.com/railsgoat-contrast
   ECS_SERVICE: railsgoat-contrast-prod
   ECS_CLUSTER: railsgoat-cluster
