@@ -1,0 +1,18 @@
+name: Build RailsGoat Image
+
+concurrency: staging
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag railsgoat-contrast:$(date +%s)
