@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-2:639576125601:task-definition/deploy-railsgoat-task-definition:1",
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-2:639576125601:task-definition/deploy-railsgoat-task-definition:2",
     "containerDefinitions": [
         {
             "name": "railsgoat-contrast-2",
@@ -17,22 +17,32 @@
             "entryPoint": [],
             "command": [],
             "environment": [],
+            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
+            "secrets": [],
+            "dnsServers": [],
+            "dnsSearchDomains": [],
+            "extraHosts": [],
+            "dockerSecurityOptions": [],
+            "dockerLabels": {},
+            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "/ecs/deploy-railsgoat-task-definition",
                     "awslogs-region": "eu-west-2",
                     "awslogs-stream-prefix": "ecs"
-                }
-            }
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
         }
     ],
     "family": "deploy-railsgoat-task-definition",
     "executionRoleArn": "arn:aws:iam::639576125601:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 2,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -47,6 +57,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
         },
         {
             "name": "ecs.capability.execution-role-ecr-pull"
@@ -68,7 +81,16 @@
     ],
     "cpu": "256",
     "memory": "512",
-    "registeredAt": "2022-03-22T17:27:12.319Z",
+    "registeredAt": "2022-03-22T23:50:06.534Z",
     "registeredBy": "arn:aws:iam::639576125601:user/Taylor-Admin",
-    "tags": []
+    "tags": [
+        {
+            "key": "ecs:taskDefinition:createdFrom",
+            "value": "ecs-console-v2"
+        },
+        {
+            "key": "ecs:taskDefinition:stackId",
+            "value": "arn:aws:cloudformation:eu-west-2:639576125601:stack/ECS-Console-V2-TaskDefinition-dc3bdb0b-4d9e-4954-aae4-4b705be2c267/c8d414d0-aa3a-11ec-9eb4-0298fa4291ee"
+        }
+    ]
 }
