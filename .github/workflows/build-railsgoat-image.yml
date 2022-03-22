@@ -4,10 +4,25 @@ concurrency: staging
 
 on:
   pull_request:
-    branches: [ main ]
+    types: [opened, synchronize, reopened, closed]
+    branches: 
+      - main
   workflow_dispatch:
 
 jobs:
+  build-docker:
+    name: "Build the docker image"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+        
+        
+      
+  
+  
+  
   build:
     runs-on: ubuntu-latest
     environment: staging
@@ -17,7 +32,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
       with:
-        ruby-version: '3.1'
+        ruby-version: '2.6'
         bundler-cache: true
     
     - name: Install dependancies
@@ -26,7 +41,14 @@ jobs:
     - name: Run tests
       run: bundle exec rake
     
+    - name: "Post a nice comment"
+      uses: github-actions-up-and-running/pr-comment@v1.0.1
+      with:
+        # Message to comment
+        message:  "Successfully built the railsgoat app"
 
+
+# OLD 
 #     - name: Build the Docker image
 #       run: docker build . --file Dockerfile --tag railsgoat-contrast:$(date +%s)
     
