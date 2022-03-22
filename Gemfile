@@ -63,3 +63,6 @@ end
 group :mysql do
   gem "mysql2"
 end
+
+# Adding the contrast Agent
+gem 'contrast-agent'
