@@ -36,10 +36,10 @@ on:
 env:
   AWS_REGION: eu-west-2
   ECR_REPOSITORY: railsgoat-contrast
-  ECS_SERVICE: railsgoat-contrast-prod
-  ECS_CLUSTER: railsgoat-cluster
+  ECS_SERVICE: railsgoat-contrast-2-service
+  ECS_CLUSTER: railsgoat-2-cluster
   ECS_TASK_DEFINITION: .github/workflows/deploy-definition.json
-  CONTAINER_NAME: railsgoat-contrast-prod
+  CONTAINER_NAME: railsgoat-contrast-2
 
 
 jobs:
