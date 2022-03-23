@@ -1,96 +1,130 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-2:639576125601:task-definition/deploy-railsgoat-task-definition:2",
-    "containerDefinitions": [
-        {
-            "name": "railsgoat-contrast-2",
-            "image": "639576125601.dkr.ecr.eu-west-2.amazonaws.com/railsgoat-contrast:55043713e9da5f2529583d8d9dffa6d09898ee8b",
-            "cpu": 0,
-            "links": [],
-            "portMappings": [
-                {
-                    "containerPort": 3000,
-                    "hostPort": 3000,
-                    "protocol": "tcp"
-                }
-            ],
-            "essential": true,
-            "entryPoint": [],
-            "command": [],
-            "environment": [],
-            "environmentFiles": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "secrets": [],
-            "dnsServers": [],
-            "dnsSearchDomains": [],
-            "extraHosts": [],
-            "dockerSecurityOptions": [],
-            "dockerLabels": {},
-            "ulimits": [],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "/ecs/deploy-railsgoat-task-definition",
-                    "awslogs-region": "eu-west-2",
-                    "awslogs-stream-prefix": "ecs"
-                },
-                "secretOptions": []
-            },
-            "systemControls": []
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::639576125601:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "dnsSearchDomains": null,
+      "environmentFiles": null,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "/ecs/railsgoat-task-definition",
+          "awslogs-region": "eu-west-2",
+          "awslogs-stream-prefix": "ecs"
         }
-    ],
-    "family": "deploy-railsgoat-task-definition",
-    "executionRoleArn": "arn:aws:iam::639576125601:role/ecsTaskExecutionRole",
-    "networkMode": "awsvpc",
-    "revision": 2,
-    "volumes": [],
-    "status": "ACTIVE",
-    "requiresAttributes": [
+      },
+      "entryPoint": [],
+      "portMappings": [
         {
-            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
         },
         {
-            "name": "ecs.capability.execution-role-awslogs"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
-        },
-        {
-            "name": "ecs.capability.execution-role-ecr-pull"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-        },
-        {
-            "name": "ecs.capability.task-eni"
+          "hostPort": 3000,
+          "protocol": "tcp",
+          "containerPort": 3000
         }
-    ],
-    "placementConstraints": [],
-    "compatibilities": [
-        "EC2",
-        "FARGATE"
-    ],
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "cpu": "256",
-    "memory": "512",
-    "registeredAt": "2022-03-22T23:50:06.534Z",
-    "registeredBy": "arn:aws:iam::639576125601:user/Taylor-Admin",
-    "tags": [
-        {
-            "key": "ecs:taskDefinition:createdFrom",
-            "value": "ecs-console-v2"
-        },
-        {
-            "key": "ecs:taskDefinition:stackId",
-            "value": "arn:aws:cloudformation:eu-west-2:639576125601:stack/ECS-Console-V2-TaskDefinition-dc3bdb0b-4d9e-4954-aae4-4b705be2c267/c8d414d0-aa3a-11ec-9eb4-0298fa4291ee"
-        }
-    ]
+      ],
+      "command": [],
+      "linuxParameters": null,
+      "cpu": 0,
+      "environment": [],
+      "resourceRequirements": null,
+      "ulimits": null,
+      "dnsServers": null,
+      "mountPoints": [],
+      "workingDirectory": null,
+      "secrets": null,
+      "dockerSecurityOptions": null,
+      "memory": null,
+      "memoryReservation": null,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "639576125601.dkr.ecr.eu-west-2.amazonaws.com/railsgoat-contrast",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": [],
+      "hostname": null,
+      "extraHosts": null,
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": null,
+      "systemControls": null,
+      "privileged": null,
+      "name": "railsgoat"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "512",
+  "taskRoleArn": null,
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:eu-west-2:639576125601:task-definition/railsgoat-task-definition:1",
+  "family": "railsgoat-task-definition",
+  "requiresAttributes": [
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.task-eni"
+    }
+  ],
+  "pidMode": null,
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "runtimePlatform": null,
+  "cpu": "256",
+  "revision": 1,
+  "status": "ACTIVE",
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": []
 }
