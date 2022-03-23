@@ -31,25 +31,34 @@ before pushing the built images to an ECR and orchestrating an ECS service to
 run the container in.
 
 [GitHub Actions](https://docs.github.com/en/actions) provide a powerful way to 
-automate CICD tasks like building and deployment new versions of your 
+automate CICD tasks like building and deploying new versions of your 
 application.
 
 In this repository, I configured two main actions as follows:
-* `github/workflows/build-railsgoat-image.yml`: build and test a Rails 
-application with github actions. 
+* `github/workflows/build-railsgoat-image.yml`: **build and test a Rails 
+application with GitHub actions** (using free action minutes allowance). 
     * Runs when a PR is raised or via a manual action
     * Builds an Ubuntu image, installs rails and Gem dependencies including the
         Contrast Security Gem
     * Runs a set of rspec tests included as part of the application and only 
         succeeds if all tests pass
 * `github/workflows/deploy_to_aws_ecs.yml`: **build and deploy the rails 
-  application as a container to Amazon ECS.:**
+  application as a container to Amazon ECS:**
   * Builds the application image specified in the Dockerfile which includes 
     the Contrast agent
   * Pushes the built image to an Amazon ECR repository
   * Uses an ECS task definition to deploy the new image into an ECS service in 
     place of the previous version of the application
   * Waits for service stability and fails if this is not achieved.
+
+For more information on using GitHub actions like this, checkout their 
+extensive [documentation here][Github Actions].
+
+This setup requires a significant amount of configuration in the AWS 
+console which is not intended to be part of this document. I may write a future
+blog post detailing this process. To get started on your own check out the 
+[GitHub Actions documentaiton][GitHub Actions deploy] and the 
+[AWS ECS getting started guide.][AWS ECS deply].
 
 
 ---
@@ -126,6 +135,11 @@ A list of resources that I found particularly useful when attempting this:
         * [Configure middleware (Rails)][Configure middleware]
         * [Configure the agent (YAML config)][Configure agent]
 
+##### GitHub Actions and AWS ECS Documentation
+* [GitHub: Deploying to Amazon Elastic Container Service][GitHub Actions deploy]
+* [Getting started with the classic console using Linux containers on AWS Fargate][AWS ECS deply]
+* [Contrast Blog on GitHub Actions Blog Series, Part 1: Pipeline Native Code Analysis][Contrast blog]
+
 ##### Further Reading
 * [RailsGoat Vulnerable Application](railsgoat)
 * Take a look at my python project which does the same as this 
@@ -142,3 +156,6 @@ A list of resources that I found particularly useful when attempting this:
 [Ruby agent]: https://docs.contrastsecurity.com/en/ruby.html
 [railsgoat]: https://github.com/OWASP/railsgoat
 [vulnerable-python-contrast]:https://github.com/mowsec/vulnerable-python-contrast/blob/main/README.md
+[GitHub Actions deploy]: https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-amazon-elastic-container-service
+[AWS ECS deply]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/getting-started-fargate.html
+[Contrast blog]: https://www.contrastsecurity.com/security-influencers/github-actions-blog-series-part-1-pipeline-native-code-analysis?hsLang=en-us
