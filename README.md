@@ -7,9 +7,9 @@ It also demonstrates a simple CICD pipeline that builds the docker container
 when a PR is raised and deploys the container into an Amazon ECS service once 
 merged. 
 
-Since I detailed the instrumentation steps in the Python project, I'll start 
-here by explaining the GitHub actions. Please scroll down for the ruby 
-instrumentation steps.
+Since I detailed the instrumentation steps in the 
+[Python project][vulnerable-python-contrast], I'll start here by explaining the 
+GitHub actions. Please scroll down for the ruby instrumentation steps.
 
 The Contrast Security agent is installed as a Gem and runs alongside your 
 application code and serves as an all-encompassing static code scanner, 
