@@ -1,0 +1,9 @@
+application:
+    name: VulnerableApp-RailsGoat-Demo
+    code: demo-2
+
+api: 
+  url: https://eval.contrastsecurity.com/Contrast
+  api_key: XXX
+  service_key: XXX
+  user_name: XXX@XXX
