@@ -1,12 +1,21 @@
 # Secure your Rails Application with Contrast Security
 
 This repository is an example of how to install the Contrast Security Agent in 
-a Ruby on Rails application.
+a Ruby on Rails application. 
 
-The agent is installed as a Gem and runs alongside your application code and 
-serves as an all-encompassing static code scanner, SCA tool, IAST agent and 
-runtime self-protection tool. For more information, check out their 
-[website][Contrast Home] and [Community Edition][Contrast community].
+It also demonstrates a simple CICD pipeline that builds the docker container
+when a PR is raised and deploys the container into an Amazon ECS service once 
+merged. 
+
+Since I detailed the instrumentation steps in the Python project, I'll start 
+here by explaining the GitHub actions. Please scroll down for the ruby 
+instrumentation steps.
+
+The Contrast Security agent is installed as a Gem and runs alongside your 
+application code and serves as an all-encompassing static code scanner, 
+SCA tool, IAST agent and runtime self-protection tool. For more information, 
+check out their [website][Contrast Home] and 
+[Community Edition][Contrast community].
 
 * Original vulnerable application source code taken from:
 [OWASP/railsgoat][railsgoat]
@@ -14,13 +23,36 @@ runtime self-protection tool. For more information, check out their
 [Contrast Security][Contrast Home]
 
 
-### Building a CICD pipeline
+---
+## Building a CICD pipeline
 This repo features some GitHub actions for building the Docker image with the 
 Contrast agent installed, and running tests against this image in GitHub actions
 before pushing the built images to an ECR and orchestrating an ECS service to 
 run the container in.
 
+[GitHub Actions](https://docs.github.com/en/actions) provide a powerful way to 
+automate CICD tasks like building and deployment new versions of your 
+application.
 
+In this repository, I configured two main actions as follows:
+* `github/workflows/build-railsgoat-image.yml`: build and test a Rails 
+application with github actions. 
+    * Runs when a PR is raised or via a manual action
+    * Builds an Ubuntu image, installs rails and Gem dependencies including the
+        Contrast Security Gem
+    * Runs a set of rspec tests included as part of the application and only 
+        succeeds if all tests pass
+* `github/workflows/deploy_to_aws_ecs.yml`: **build and deploy the rails 
+  application as a container to Amazon ECS.:**
+  * Builds the application image specified in the Dockerfile which includes 
+    the Contrast agent
+  * Pushes the built image to an Amazon ECR repository
+  * Uses an ECS task definition to deploy the new image into an ECS service in 
+    place of the previous version of the application
+  * Waits for service stability and fails if this is not achieved.
+
+
+---
 ## Instrument a Rails application with Contrast Security
 A step-by-step guide for implementing the Agent in this specific application, 
 instrumentation requirements vary per technology stack. Please refer to the 
@@ -53,7 +85,7 @@ to the [documentation][Configure middleware]
 Using the [YAML template][Configure agent] provided, or by downloading a YAML 
 template from the Contrast web portal, we can configure the agent:
 
-`contrast_security.yml`:
+`config/contrast_security.yml`:
 ```yaml
 api:
   url: https://eval.contrastsecurity.com/Contrast
@@ -83,14 +115,30 @@ everything worked, then when you next go to your Contrast Security dashboard
 you'll see details for the new application and any security issues that have
 been detected.
 
+---
+## Resources used
+A list of resources that I found particularly useful when attempting this:
+
+##### Contrast Documentation
+* [Contrast Security Docuemntation][Contrast Docs Home]
+    * [Agents -> Python agent][Python agent]
+        * [Install the Ruby agent as a Gem][Install]
+        * [Configure middleware (Rails)][Configure middleware]
+        * [Configure the agent (YAML config)][Configure agent]
+
+##### Further Reading
+* [RailsGoat Vulnerable Application](railsgoat)
+* Take a look at my python project which does the same as this 
+    [mowsec/vulnerable-python-contrast][vulnerable-python-contrast]
+
+
 
 [Contrast Home]: https://www.contrastsecurity.com/
 [Contrast community]: https://www.contrastsecurity.com/en-gb/contrast-community-edition
 [Contrast Docs Home]: https://docs.contrastsecurity.com/index.html?lang=en
-
-[Python agent]: https://docs.contrastsecurity.com/en/python.html
+[Install]: https://docs.contrastsecurity.com/en/rubygems.html
 [Configure middleware]: https://docs.contrastsecurity.com/en/ruby-frameworks.html#configure-with-rails
 [Configure agent]: https://docs.contrastsecurity.com/en/ruby-configuration.html
+[Ruby agent]: https://docs.contrastsecurity.com/en/ruby.html
 [railsgoat]: https://github.com/OWASP/railsgoat
-
 [vulnerable-python-contrast]:https://github.com/mowsec/vulnerable-python-contrast/blob/main/README.md
